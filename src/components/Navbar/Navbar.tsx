@@ -9,6 +9,7 @@ const Navbar = () => {
       <Button onClick={() => navigate("/")}>Home</Button>
       <Button onClick={() => navigate("/catalog")}>Catalog</Button>
       <Button onClick={() => navigate("/add")}>Add</Button>
+      <input type="text" placeholder="Search" />
     </div>
   );
 };

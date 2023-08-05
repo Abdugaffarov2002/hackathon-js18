@@ -1,25 +1,52 @@
 {
   "products": [
     {
-      "name": "T-Shirt",
+      "id": 1,
+      "title": "T-Shirt",
       "description": "Great fit, super comfy",
       "image": "https://i.imgur.com/KeQtXT3.png",
       "price": 25,
-      "sku": "123"
+      "category": "Chelse"
     },
     {
-      "name": "Sweater",
+      "id": 2,
+      "title": "Sweater",
       "description": "Awesome for cold days",
       "image": "https://i.imgur.com/fVpadKg.png",
       "price": 50,
-      "sku": "456"
+      "category": "Real"
     },
     {
-      "name": "Button Down",
+      "id": 3,
+      "title": "Button Down",
       "description": "A little fancier",
       "image": "https://i.imgur.com/JxGBvyj.png",
       "price": 30,
-      "sku": "789"
+      "category": "Barsa"
+    },
+    {
+      "title": "hi",
+      "description": "abcdef",
+      "category": "real",
+      "price": 1234,
+      "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7d99f968-8ffa-40f8-aa7a-aec27417dfaf/air-force-1-low-retro-mens-shoes-1VHstQ.png",
+      "id": 4
+    },
+    {
+      "title": "vfdkasa",
+      "description": "fvmlsfjvlrsgvs",
+      "category": "real",
+      "price": 4353,
+      "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/89bebf6c-3168-4b8d-b08a-2e717a00df2b/air-force-1-big-kids-shoes-k4BQ8C.png",
+      "id": 5
+    },
+    {
+      "title": "messi",
+      "description": "dfvslvfksnvsl",
+      "category": "real",
+      "price": 1234,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      "id": 6
     }
   ]
 }
