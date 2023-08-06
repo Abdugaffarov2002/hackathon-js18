@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { productContext } from "../../context/ProductContext/ProductContext";
 import { IProductContextType } from "../../context/ProductContext/types";
 import ProductCard from "./ProductCard";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 const ProductList = () => {
   const { getProducts, products } = useContext(
@@ -18,7 +18,7 @@ const ProductList = () => {
         {products ? (
           products.map((item) => <ProductCard key={item.id} item={item} />)
         ) : (
-          <h2>Loading...</h2>
+          <CircularProgress />
         )}
       </Grid>
     </div>

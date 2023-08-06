@@ -1,8 +1,10 @@
-import React from "react";
 import AddProductPage from "./pages/AddProductPage";
 import EditProductPage from "./pages/EditProductPage";
 import { Route, Routes } from "react-router-dom";
 import CatalogPage from "./pages/CatalogPage";
+import DetailsPage from "./pages/DetailsPage";
+import CartPage from "./pages/CartPage";
+import { Product } from "./models/product";
 
 export const MainRoutes = [
   {
@@ -20,6 +22,16 @@ export const MainRoutes = [
     element: <CatalogPage />,
     id: 3,
   },
+  {
+    link: "/details/:id",
+    element: <DetailsPage />,
+    id: 4,
+  },
+  {
+    link: "/cart/:id",
+    element: <CartPage />,
+    id: 5,
+  },
 ];
 
 const MyRoutes = () => {
@@ -28,6 +40,7 @@ const MyRoutes = () => {
       {MainRoutes.map((item) => (
         <Route path={item.link} element={item.element} key={item.id} />
       ))}
+      <Route />
     </Routes>
   );
 };
