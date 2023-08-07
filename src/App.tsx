@@ -6,8 +6,8 @@ import ProductContext from "./context/ProductContext/ProductContext";
 function App() {
   return (
     <div>
-      <Navbar />
       <ProductContext>
+        <Navbar />
         <MyRoutes />
       </ProductContext>
     </div>

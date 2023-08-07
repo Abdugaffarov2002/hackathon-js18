@@ -4,11 +4,16 @@ import { Product, IProductCreate } from "../../models/product";
 export interface IProductContextType {
   products: Product[];
   product: Product | null;
+
   createProduct: (newProduct: IProductCreate) => void;
   getProducts: () => void;
   getOneProduct: (id: number) => void;
   editProduct: (newProduct: Product) => void;
   deleteProduct: (id: number) => void;
+  productTotalCount: number;
+  page: number;
+  setPage: (num: number) => void;
+
   // deleteProductDetails: (id: number) => void;
   //   page: number;
   //   pageTotalCount: number;
@@ -23,7 +28,7 @@ export interface IProductContextType {
 export interface IInitState {
   products: Product[];
   product: Product | null;
-  pageTotalCount: number;
+  productTotalCount: number;
 }
 
 interface IProductsAction {
@@ -36,8 +41,11 @@ interface IProductAction {
 }
 
 interface IPageTotalCountAction {
-  type: "pageTotalCount";
+  type: "productTotalCount";
   payload: number;
 }
 
-export type TProductAction = IProductsAction | IProductAction;
+export type TProductAction =
+  | IProductsAction
+  | IProductAction
+  | IPageTotalCountAction;
