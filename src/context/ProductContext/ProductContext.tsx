@@ -6,7 +6,7 @@ import { IProductCreate, Product } from "../../models/product";
 import axios from "axios";
 import { API, Limit } from "../../models/const";
 import { useNavigate } from "react-router";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export const productContext = createContext<IProductContextType | null>(null);
 
@@ -39,6 +39,7 @@ function reducer(state: IInitState, action: TProductAction) {
 const ProductContext: FC<IProductContext> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [paginateParams, setPaginateParms] = useSearchParams();
   const [page, setPage] = useState<number>(
@@ -86,6 +87,17 @@ const ProductContext: FC<IProductContext> = ({ children }) => {
     navigate("/catalog");
   }
 
+  function fetchByParams(category: string, value: string) {
+    const paramsFromUrl = new URLSearchParams(location.search);
+    if (value === "all") {
+      paramsFromUrl.delete(category);
+    } else {
+      paramsFromUrl.set(category, value);
+    }
+    const url = `${location.pathname}? ${paramsFromUrl.toString()}`;
+    navigate(url);
+  }
+
   const value = {
     products: state.products,
     product: state.product,
@@ -97,6 +109,7 @@ const ProductContext: FC<IProductContext> = ({ children }) => {
     editProduct,
     deleteProduct,
     setPage,
+    fetchByParams,
   };
 
   return (

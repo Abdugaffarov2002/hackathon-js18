@@ -1,9 +1,8 @@
-import React, { FC, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { productContext } from "../context/ProductContext/ProductContext";
 import { IProductContextType } from "../context/ProductContext/types";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -13,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/joy/IconButton";
 import Menu from "@mui/joy/Menu";
 import MenuItem from "@mui/joy/MenuItem";
@@ -94,6 +94,15 @@ const DetailsPage = () => {
                 </CardContent>
               </Container>
             </CardActionArea>
+            {/* <Container
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignContent: "center",
+              }}
+            >
+              <FavoriteBorderOutlinedIcon />
+            </Container> */}
 
             <Container
               sx={{
@@ -102,6 +111,15 @@ const DetailsPage = () => {
                 flexDirection: "row",
               }}
             >
+              <Container
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  margin: 1,
+                }}
+              >
+                <FavoriteBorderOutlinedIcon />
+              </Container>
               <ShoppingBagOutlinedIcon
                 sx={{ margin: 1 }}
                 onClick={() => navigate(`/cart/${id}`)}

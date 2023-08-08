@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import CatalogPage from "./pages/CatalogPage";
 import DetailsPage from "./pages/DetailsPage";
 import CartPage from "./pages/CartPage";
-import { Product } from "./models/product";
+import HomePage from "./pages/HomePage";
 
 export const MainRoutes = [
   {
@@ -31,6 +31,11 @@ export const MainRoutes = [
     link: "/cart/:id",
     element: <CartPage />,
     id: 5,
+  },
+  {
+    link: "/",
+    element: <HomePage />,
+    id: 6,
   },
 ];
 

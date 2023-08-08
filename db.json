@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "title": "sneakers",
-      "description": "rgtsrgdr",
-      "category": "barca",
-      "price": 54,
-      "image": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7d99f968-8ffa-40f8-aa7a-aec27417dfaf/air-force-1-low-retro-mens-shoes-1VHstQ.png",
-      "id": 1
-    },
-    {
       "title": "nike",
       "description": "rgtsrgdr",
       "category": "real",

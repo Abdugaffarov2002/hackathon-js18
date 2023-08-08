@@ -1,18 +1,17 @@
-import { MouseEventHandler } from "react";
 import { Product, IProductCreate } from "../../models/product";
 
 export interface IProductContextType {
   products: Product[];
   product: Product | null;
-
+  productTotalCount: number;
+  page: number;
   createProduct: (newProduct: IProductCreate) => void;
   getProducts: () => void;
   getOneProduct: (id: number) => void;
   editProduct: (newProduct: Product) => void;
   deleteProduct: (id: number) => void;
-  productTotalCount: number;
-  page: number;
   setPage: (num: number) => void;
+  fetchByParams: (category: string, value: string) => void;
 
   // deleteProductDetails: (id: number) => void;
   //   page: number;
