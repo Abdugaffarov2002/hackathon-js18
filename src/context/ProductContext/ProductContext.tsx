@@ -98,11 +98,39 @@ const ProductContext: FC<IProductContext> = ({ children }) => {
     navigate(url);
   }
 
+  function likeProduct(id: number) {
+    const productToLike = state.products.find((product) => product.id === id);
+
+    if (productToLike) {
+      axios
+        .patch(`${API}/${id}`, { likes: productToLike.likes + 1 })
+        .then((response) => {
+          const updatedProduct = {
+            ...productToLike,
+            likes: response.data.likes,
+          };
+          const updatedProducts = state.products.map((product) =>
+            product.id === id ? updatedProduct : product
+          );
+
+          dispatch({
+            type: "products",
+            payload: updatedProducts,
+          });
+          getOneProduct(id);
+        })
+        .catch((error) => {
+          console.error("Ошибка при лайке продукта:", error);
+        });
+    }
+  }
+
   const value = {
     products: state.products,
     product: state.product,
     productTotalCount: state.productTotalCount,
     page,
+    likeProduct,
     getProducts,
     createProduct,
     getOneProduct,

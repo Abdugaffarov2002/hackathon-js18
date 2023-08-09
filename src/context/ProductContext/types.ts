@@ -12,16 +12,7 @@ export interface IProductContextType {
   deleteProduct: (id: number) => void;
   setPage: (num: number) => void;
   fetchByParams: (category: string, value: string) => void;
-
-  // deleteProductDetails: (id: number) => void;
-  //   page: number;
-  //   pageTotalCount: number;
-  //   getProducts: () => void;
-  //   addProduct: (newProduct: IProductCreate) => void;
-  //   deleteProduct: (id: number) => void;
-  //   getOneProduct: (id: number) => void;
-  //   editProduct: (newData: IProduct) => void;
-  //   setPage: (num: number) => void;
+  likeProduct: (id: number) => void;
 }
 
 export interface IInitState {

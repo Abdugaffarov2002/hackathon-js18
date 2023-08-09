@@ -27,6 +27,7 @@ const init = {
   description: "",
   category: "",
   price: "",
+  likes: 0,
   image: "",
 };
 
@@ -61,6 +62,7 @@ export default function InputForm() {
       ...product,
       price: +product.price,
       category: product.category as TCategory,
+      likes: product.likes,
     });
     setProduct(init);
   };

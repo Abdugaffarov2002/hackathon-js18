@@ -25,7 +25,7 @@ import MenuButton from "@mui/joy/MenuButton";
 import Dropdown from "@mui/joy/Dropdown";
 
 const DetailsPage = () => {
-  const { getOneProduct, product, deleteProduct } = useContext(
+  const { getOneProduct, product, deleteProduct, likeProduct } = useContext(
     productContext
   ) as IProductContextType;
 
@@ -94,15 +94,6 @@ const DetailsPage = () => {
                 </CardContent>
               </Container>
             </CardActionArea>
-            {/* <Container
-              sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignContent: "center",
-              }}
-            >
-              <FavoriteBorderOutlinedIcon />
-            </Container> */}
 
             <Container
               sx={{
@@ -118,7 +109,24 @@ const DetailsPage = () => {
                   margin: 1,
                 }}
               >
-                <FavoriteBorderOutlinedIcon />
+                <FavoriteBorderOutlinedIcon
+                  onClick={() => likeProduct(product.id)}
+                />
+
+                <Container
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    width: "150px",
+                    fontSize: "22px",
+                    ml: "-8px",
+                  }}
+                >
+                  <p>{product.likes}</p>
+
+                  <p>нравится</p>
+                </Container>
               </Container>
               <ShoppingBagOutlinedIcon
                 sx={{ margin: 1 }}

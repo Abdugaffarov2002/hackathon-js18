@@ -79,6 +79,7 @@ export default function EditProduct() {
       ...newProduct,
       price: +newProduct.price,
       category: newProduct.category as TCategory,
+      likes: 0,
     });
 
     navigate("/catalog");

@@ -7,6 +7,7 @@ export interface Product {
   description: string;
   image: string;
   category: TCategory;
+  likes: number;
 }
 
 export type IProductCreate = Omit<Product, "id">;

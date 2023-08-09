@@ -23,21 +23,20 @@ import Dropdown from "@mui/joy/Dropdown";
 import { Container } from "@mui/system";
 import { productContext } from "../../context/ProductContext/ProductContext";
 import { IProductContextType } from "../../context/ProductContext/types";
-import FilterProduct from "./FilterProduct";
 
 interface ProductItemProps {
   item: Product;
 }
 
+type LikedProduct = Product & { liked: boolean };
+
 const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { deleteProduct } = React.useContext(
+  const { deleteProduct, likeProduct } = React.useContext(
     productContext
   ) as IProductContextType;
-
-  console.log("proCardItem", item);
 
   return (
     <>
@@ -83,7 +82,24 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
                 ml: "-33px",
               }}
             >
-              <FavoriteBorderOutlinedIcon />
+              <FavoriteBorderOutlinedIcon
+                onClick={() => likeProduct(item.id)}
+              />
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "150px",
+                  fontSize: "22px",
+                  ml: "-8px",
+                }}
+              >
+                <Container>
+                  <p>{item.likes}</p>
+                </Container>
+                <p>нравится</p>
+              </Container>
             </Container>
 
             <ShoppingBagOutlinedIcon
