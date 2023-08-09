@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
       <Grid item xs={8} md={6} lg={4}>
         <Card sx={{ maxWidth: 345, margin: "20px" }}>
           <CardMedia
-            sx={{ height: 200 }}
+            sx={{ height: 300 }}
             image={item.image}
             title={item.title}
             onClick={() => navigate(`/details/${item.id}`)}
