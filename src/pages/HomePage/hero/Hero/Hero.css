@@ -1,0 +1,37 @@
+.hero {
+  background-image: url("https://asiaplustj.info/sites/default/files/articles/320052/photo_2022-12-19_08-38-11.jpg");
+  height: calc(90vh - 64px);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto 0;
+  background-position: right;
+
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+/* .backdrop {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 25%);
+  backdrop-filter: blur(3px);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+} */
+.hero h1 {
+  font-size: 48px;
+  margin-top: 100px;
+  color: #fff;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 768px) {
+  .hero {
+    height: 450px;
+    background-position: left;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+}

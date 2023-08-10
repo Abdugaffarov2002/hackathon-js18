@@ -3,12 +3,14 @@ import Card from "@mui/material/Card";
 
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-
+import BookmarkAddedOutlinedIcon from "@mui/icons-material/BookmarkAddedOutlined";
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { Product } from "../../models/product";
 import { useNavigate, useParams } from "react-router-dom";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/joy/IconButton";
 import Menu from "@mui/joy/Menu";
@@ -23,14 +25,21 @@ import Dropdown from "@mui/joy/Dropdown";
 import { Container } from "@mui/system";
 import { productContext } from "../../context/ProductContext/ProductContext";
 import { IProductContextType } from "../../context/ProductContext/types";
+import { cartContext } from "../../context/CartContext/CartContext";
+import { ICartContextTypes } from "../../context/CartContext/types";
 
 interface ProductItemProps {
   item: Product;
 }
 
-type LikedProduct = Product & { liked: boolean };
-
 const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
+  const {
+    addProductToCart,
+    deleteProductFromCart,
+    isAlreadyInCart,
+    saveProduct,
+  } = React.useContext(cartContext) as ICartContextTypes;
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -52,8 +61,12 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
             <Typography gutterBottom variant="h4" component="div">
               {item.title}
             </Typography>
-            <Typography variant="h5" color="text.secondary">
-              description:
+            <Typography
+              sx={{ cursor: "pointer" }}
+              variant="h5"
+              color="text.secondary"
+            >
+              Club:
               {item.description}
             </Typography>
             <br />
@@ -63,8 +76,8 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
             </Typography>
             <br />
             <Typography variant="h5" color="text.secondary">
-              Price:$
-              {item.price}
+              {/* Price:$
+              {item.price} */}
             </Typography>
           </CardContent>
           <Container
@@ -83,6 +96,7 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
               }}
             >
               <FavoriteBorderOutlinedIcon
+                sx={{ cursor: "pointer" }}
                 onClick={() => likeProduct(item.id)}
               />
               <Container
@@ -102,10 +116,21 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
               </Container>
             </Container>
 
-            <ShoppingBagOutlinedIcon
-              sx={{ margin: 1 }}
-              onClick={() => navigate(`/cart/${item.id}`)}
-            />
+            {isAlreadyInCart(item.id) ? (
+              <IconButton
+                onClick={() => deleteProductFromCart(item.id)}
+                sx={{ margin: 1, cursor: "pointer" }}
+              >
+                <ShoppingBagIcon color="primary" />
+              </IconButton>
+            ) : (
+              <IconButton
+                sx={{ margin: 1, cursor: "pointer" }}
+                onClick={() => addProductToCart(item)}
+              >
+                <ShoppingBagOutlinedIcon />
+              </IconButton>
+            )}
 
             <Dropdown>
               <MenuButton
@@ -118,6 +143,12 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
                 <MoreVert />
               </MenuButton>
               <Menu placement="bottom-end">
+                <MenuItem onClick={() => saveProduct(item)}>
+                  <ListItemDecorator>
+                    <BookmarkAddOutlinedIcon />
+                  </ListItemDecorator>
+                  Edit
+                </MenuItem>
                 <MenuItem onClick={() => navigate(`/edit/${item.id}`)}>
                   <ListItemDecorator>
                     <Edit />

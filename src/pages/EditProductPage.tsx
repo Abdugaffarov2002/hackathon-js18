@@ -36,6 +36,8 @@ export default function EditProduct() {
     description: "",
     price: "",
     image: "",
+    image1: "",
+    image2: "",
     category: "",
   });
 

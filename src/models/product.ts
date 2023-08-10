@@ -8,6 +8,8 @@ export interface Product {
   image: string;
   category: TCategory;
   likes: number;
+  image1: string;
+  image2: string;
 }
 
 export type IProductCreate = Omit<Product, "id">;

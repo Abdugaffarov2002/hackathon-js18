@@ -32,7 +32,15 @@ const ProductList = () => {
   return (
     <>
       <Container
-        sx={{ display: "flex", justifyContent: "center", flexDirection: "row" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "row",
+          position: "absolute",
+          top: "7px",
+          left: 550,
+          width: "200px",
+        }}
       >
         <FilterProduct />
       </Container>

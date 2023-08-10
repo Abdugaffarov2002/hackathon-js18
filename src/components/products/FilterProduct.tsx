@@ -7,17 +7,49 @@ const FilterProduct = () => {
   const { fetchByParams } = useContext(productContext) as IProductContextType;
   return (
     <div>
-      <Paper>
+      <Paper sx={{ width: "471px", backgroundColor: "#263238" }}>
         <ToggleButtonGroup
-          color="primary"
+          sx={{ backgroundColor: "#263238", border: "none" }}
           exclusive
           onChange={(e, value) => fetchByParams("category", value)}
           aria-label="Platform"
         >
-          <ToggleButton value="all">All</ToggleButton>
-          <ToggleButton value="barca">Barca</ToggleButton>
-          <ToggleButton value="real">Real</ToggleButton>
-          <ToggleButton value="chelsy">Chelsy</ToggleButton>
+          <ToggleButton sx={{ color: "#f5f5f5", fontSize: "12px" }} value="all">
+            All
+          </ToggleButton>
+          <ToggleButton sx={{ color: "#f5f5f5", fontSize: "12px" }} value="APL">
+            APL
+          </ToggleButton>
+          <ToggleButton
+            sx={{ color: "#f5f5f5", fontSize: "12px" }}
+            value="LaLiga"
+          >
+            LaLiga
+          </ToggleButton>
+          <ToggleButton
+            sx={{ color: "#f5f5f5", fontSize: "12px" }}
+            value="Seria A"
+          >
+            Seria A
+          </ToggleButton>
+          <ToggleButton
+            sx={{ color: "#f5f5f5", fontSize: "12px" }}
+            value="Bundesliga"
+          >
+            Bundesliga
+          </ToggleButton>
+          <ToggleButton
+            sx={{ color: "#f5f5f5", fontSize: "12px" }}
+            value="Ligue 1"
+          >
+            Ligue 1
+          </ToggleButton>
+          <ToggleButton
+            sx={{ color: "#f5f5f5", fontSize: "12px" }}
+            value="Stars"
+          >
+            Stars
+          </ToggleButton>
         </ToggleButtonGroup>
       </Paper>
     </div>

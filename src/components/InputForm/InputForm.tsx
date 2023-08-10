@@ -29,6 +29,8 @@ const init = {
   price: "",
   likes: 0,
   image: "",
+  image1: "",
+  image2: "",
 };
 
 export default function InputForm() {
@@ -63,6 +65,8 @@ export default function InputForm() {
       price: +product.price,
       category: product.category as TCategory,
       likes: product.likes,
+      image1: product.image1,
+      image2: product.image2,
     });
     setProduct(init);
   };

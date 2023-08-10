@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/joy/IconButton";
 import Menu from "@mui/joy/Menu";
@@ -23,11 +24,17 @@ import Edit from "@mui/icons-material/Edit";
 import DeleteForever from "@mui/icons-material/DeleteForever";
 import MenuButton from "@mui/joy/MenuButton";
 import Dropdown from "@mui/joy/Dropdown";
+import { Product } from "../models/product";
+import { cartContext } from "../context/CartContext/CartContext";
+import { ICartContextTypes } from "../context/CartContext/types";
 
 const DetailsPage = () => {
   const { getOneProduct, product, deleteProduct, likeProduct } = useContext(
     productContext
   ) as IProductContextType;
+
+  const { addProductToCart, deleteProductFromCart, isAlreadyInCart } =
+    useContext(cartContext) as ICartContextTypes;
 
   const navigate = useNavigate();
 
@@ -57,6 +64,20 @@ const DetailsPage = () => {
                   component="img"
                   height="90%"
                   image={product.image}
+                  alt={product.title}
+                />
+                <CardMedia
+                  sx={{ width: "100%", objectFit: "contain" }}
+                  component="img"
+                  height="90%"
+                  image={product.image1}
+                  alt={product.title}
+                />
+                <CardMedia
+                  sx={{ width: "100%", objectFit: "contain" }}
+                  component="img"
+                  height="90%"
+                  image={product.image2}
                   alt={product.title}
                 />
               </Container>
@@ -110,6 +131,7 @@ const DetailsPage = () => {
                 }}
               >
                 <FavoriteBorderOutlinedIcon
+                  sx={{ cursor: "pointer" }}
                   onClick={() => likeProduct(product.id)}
                 />
 
@@ -128,10 +150,21 @@ const DetailsPage = () => {
                   <p>нравится</p>
                 </Container>
               </Container>
-              <ShoppingBagOutlinedIcon
-                sx={{ margin: 1 }}
-                onClick={() => navigate(`/cart/${id}`)}
-              />
+              {isAlreadyInCart(product.id) ? (
+                <IconButton
+                  onClick={() => deleteProductFromCart(product.id)}
+                  sx={{ margin: 1, cursor: "pointer" }}
+                >
+                  <ShoppingBagIcon color="primary" />
+                </IconButton>
+              ) : (
+                <IconButton
+                  sx={{ margin: 1, cursor: "pointer" }}
+                  onClick={() => addProductToCart(product)}
+                >
+                  <ShoppingBagOutlinedIcon />
+                </IconButton>
+              )}
 
               <Dropdown>
                 <MenuButton
