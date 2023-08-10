@@ -72,6 +72,10 @@ const CartContext: FC<ICartContextProps> = ({ children }) => {
 
     setCartToLS(data);
     getCart();
+    notify("Successfully removed from cart");
+  }
+  function clearLS() {
+    localStorage.clear();
   }
 
   function isAlreadyInCart(id: number): boolean {
@@ -157,6 +161,7 @@ const CartContext: FC<ICartContextProps> = ({ children }) => {
     saveProduct,
     removeSavedProduct,
     getSavedProductsFromLS,
+    clearLS,
   };
   return <cartContext.Provider value={value}>{children}</cartContext.Provider>;
 };

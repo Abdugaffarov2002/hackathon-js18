@@ -7,6 +7,7 @@ import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage/HomePage";
 import AuthPage from "./pages/AuthPage";
 import SavedPages from "./pages/SavedPages";
+import SuccessPage from "./pages/SuccessPage";
 
 export const MainRoutes = [
   {
@@ -47,6 +48,11 @@ export const MainRoutes = [
   {
     link: "/saved/:id",
     element: <SavedPages />,
+    id: 7,
+  },
+  {
+    link: "/success",
+    element: <SuccessPage />,
     id: 7,
   },
 ];

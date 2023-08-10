@@ -18,4 +18,5 @@ export interface ICartContextTypes {
   saveProduct: (product: Product) => void;
   removeSavedProduct: (id: number) => void;
   getSavedProductsFromLS: () => void;
+  clearLS: () => void;
 }

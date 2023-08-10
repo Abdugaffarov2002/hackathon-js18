@@ -15,8 +15,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 
 export default function CartPage() {
-  const { cart, getCart, increaseCount, decreaseCount, deleteProductFromCart } =
-    React.useContext(cartContext) as ICartContextTypes;
+  const {
+    cart,
+    getCart,
+    increaseCount,
+    decreaseCount,
+    deleteProductFromCart,
+    clearLS,
+  } = React.useContext(cartContext) as ICartContextTypes;
 
   React.useEffect(() => {
     getCart();
@@ -108,7 +114,12 @@ export default function CartPage() {
           Total price: ${cart.totalPrice.toFixed(2)}{" "}
         </Typography>
 
-        <Button component={Link} to="/success" variant="contained">
+        <Button
+          onClick={() => clearLS()}
+          component={Link}
+          to="/success"
+          variant="contained"
+        >
           Order
         </Button>
       </Box>

@@ -1,19 +1,20 @@
-import React, { useContext, useEffect } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { productContext } from "../context/ProductContext/ProductContext";
 import { IProductContextType } from "../context/ProductContext/types";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  Box,
+  Button,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   CircularProgress,
   Container,
+  Fab,
   Typography,
 } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/joy/IconButton";
 import Menu from "@mui/joy/Menu";
 import MenuItem from "@mui/joy/MenuItem";
@@ -24,17 +25,11 @@ import Edit from "@mui/icons-material/Edit";
 import DeleteForever from "@mui/icons-material/DeleteForever";
 import MenuButton from "@mui/joy/MenuButton";
 import Dropdown from "@mui/joy/Dropdown";
-import { Product } from "../models/product";
-import { cartContext } from "../context/CartContext/CartContext";
-import { ICartContextTypes } from "../context/CartContext/types";
 
 const DetailsPage = () => {
-  const { getOneProduct, product, deleteProduct, likeProduct } = useContext(
+  const { getOneProduct, product, deleteProduct } = useContext(
     productContext
   ) as IProductContextType;
-
-  const { addProductToCart, deleteProductFromCart, isAlreadyInCart } =
-    useContext(cartContext) as ICartContextTypes;
 
   const navigate = useNavigate();
 
@@ -49,153 +44,132 @@ const DetailsPage = () => {
   return (
     <div>
       {product ? (
-        <Container sx={{ mt: 8 }}>
-          <Card sx={{ maxWidth: "100%" }}>
-            <CardActionArea sx={{ height: "auto", display: "flex", p: 2 }}>
-              <Container
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  maxWidth: "65%",
-                }}
-              >
-                <CardMedia
-                  sx={{ width: "100%", objectFit: "contain" }}
-                  component="img"
-                  height="90%"
-                  image={product.image}
-                  alt={product.title}
-                />
-                <CardMedia
-                  sx={{ width: "100%", objectFit: "contain" }}
-                  component="img"
-                  height="90%"
-                  image={product.image1}
-                  alt={product.title}
-                />
-                <CardMedia
-                  sx={{ width: "100%", objectFit: "contain" }}
-                  component="img"
-                  height="90%"
-                  image={product.image2}
-                  alt={product.title}
-                />
-              </Container>
-              <Container sx={{ textAlign: "center" }}>
-                <CardContent>
-                  <Typography gutterBottom variant="h3" component="div">
-                    {product.title}
-                  </Typography>
-                  <br />
-                  <Typography
-                    variant="h4"
-                    color="text.secondary"
-                    component={"div"}
-                  >
-                    {product.description}
-                  </Typography>
-                  <br />
+        <Container
+          sx={{
+            display: "flex",
+            padding: "0",
+            margin: "0",
+            width: "100%",
+          }}
+        >
+          <Box sx={{ display: "grid", margin: "25px auto", gap: "10px" }}>
+            <CardMedia
+              sx={{ width: "700px" }}
+              component="img"
+              height="800px"
+              image={product.image}
+              alt={product.title}
+            />
+            <CardMedia
+              sx={{ width: "700px" }}
+              component="img"
+              height="800px"
+              image={product.image1}
+              alt={product.title}
+            />
+            <CardMedia
+              sx={{ width: "700px" }}
+              component="img"
+              height="800px"
+              image={product.image2}
+              alt={product.title}
+            />
+          </Box>
+          <Card
+            sx={{
+              // marginTop: "",
+              height: "100vh",
+              position: "fixed",
+              right: "10px",
+              width: "390px",
+            }}
+          >
+            <Container>
+              <CardContent>
+                <Typography
+                  sx={{ display: "flex", fontSize: "24px" }}
+                  gutterBottom
+                  variant="h3"
+                  component="div"
+                >
+                  {product.title}
+                </Typography>
+                <br />
 
-                  <Typography
-                    variant="h4"
-                    color="text.secondary"
-                    component={"div"}
-                  >
-                    {product.category}
-                  </Typography>
-                  <br />
+                <Typography
+                  sx={{ fontSize: "20px" }}
+                  variant="h4"
+                  color="text.secondary"
+                  component={"div"}
+                >
+                  ${product.price}
+                </Typography>
+              </CardContent>
+            </Container>
 
-                  <Typography
-                    variant="h4"
-                    color="text.secondary"
-                    component={"div"}
-                  >
-                    ${product.price}
-                  </Typography>
-                </CardContent>
-              </Container>
-            </CardActionArea>
-
-            <Container
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                flexDirection: "row",
-              }}
-            >
-              <Container
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  margin: 1,
-                }}
-              >
-                <FavoriteBorderOutlinedIcon
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => likeProduct(product.id)}
-                />
-
-                <Container
+            <Container sx={{ mb: "40px" }}>
+              <Typography>Size</Typography>
+              <Box sx={{ display: "flex", gap: "10px" }}>
+                <Button
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    width: "150px",
-                    fontSize: "22px",
-                    ml: "-8px",
+                    color: "white",
+                    borderRadius: "50px",
+                    backgroundColor: "#0068ff",
                   }}
                 >
-                  <p>{product.likes}</p>
-
-                  <p>нравится</p>
-                </Container>
-              </Container>
-              {isAlreadyInCart(product.id) ? (
-                <IconButton
-                  onClick={() => deleteProductFromCart(product.id)}
-                  sx={{ margin: 1, cursor: "pointer" }}
-                >
-                  <ShoppingBagIcon color="primary" />
-                </IconButton>
-              ) : (
-                <IconButton
-                  sx={{ margin: 1, cursor: "pointer" }}
-                  onClick={() => addProductToCart(product)}
-                >
-                  <ShoppingBagOutlinedIcon />
-                </IconButton>
-              )}
-
-              <Dropdown>
-                <MenuButton
-                  slots={{ root: IconButton }}
-                  slotProps={{
-                    root: { variant: "contained", color: "neutral" },
+                  S
+                </Button>
+                <Button
+                  sx={{
+                    color: "white",
+                    borderRadius: "50px",
+                    backgroundColor: "#0068ff",
                   }}
                 >
-                  <MoreVert />
-                </MenuButton>
-                <Menu placement="bottom-end">
-                  <MenuItem onClick={() => navigate(`/edit/${id}`)}>
-                    <ListItemDecorator>
-                      <Edit />
-                    </ListItemDecorator>
-                    Edit
-                  </MenuItem>
-                  <MenuItem
-                    variant="soft"
-                    color="danger"
-                    onClick={() => product && deleteProduct(product.id)}
-                  >
-                    <ListItemDecorator sx={{ color: "inherit" }}>
-                      <DeleteForever />
-                    </ListItemDecorator>
-                    Delete
-                  </MenuItem>
+                  M
+                </Button>
+                <Button
+                  sx={{
+                    color: "white",
+                    borderRadius: "50px",
+                    backgroundColor: "#0068ff",
+                  }}
+                >
+                  L
+                </Button>
+                <Button
+                  sx={{
+                    color: "white",
+                    borderRadius: "50px",
+                    backgroundColor: "#0068ff",
+                  }}
+                >
+                  XL
+                </Button>
+                <Button
+                  sx={{
+                    color: "white",
+                    borderRadius: "50px",
+                    backgroundColor: "#0068ff",
+                  }}
+                >
+                  2XL
+                </Button>
+              </Box>
+            </Container>
 
-                  <ListDivider />
-                </Menu>
-              </Dropdown>
+            <Container sx={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                onClick={() => navigate(`/cart/${id}`)}
+                sx={{
+                  border: "1px solid aqua",
+                  backgroundColor: "#fbc43f",
+                  padding: "8px 50px",
+                }}
+              >
+                <ShoppingBagOutlinedIcon />
+                <Typography>ADD TO CART</Typography>
+              </Button>
             </Container>
           </Card>
         </Container>
