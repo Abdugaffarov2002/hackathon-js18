@@ -1,4 +1,4 @@
-import { Box, Button, Container, Input, Link, Typography } from "@mui/material";
+import { Box, Button, Container, Link, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { productContext } from "../../context/ProductContext/ProductContext";
@@ -6,7 +6,6 @@ import { IProductContextType } from "../../context/ProductContext/types";
 import { IAuthContextTypes } from "../../context/AuthContext/types";
 import { authContext } from "../../context/AuthContext/AuthContext";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { styled, alpha, createTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,12 +17,10 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { cartContext } from "../../context/CartContext/CartContext";
 import { ICartContextTypes } from "../../context/CartContext/types";
-import { ThemeProvider } from "@emotion/react";
+import "./Navbar.css";
 
 //-------------------------------------------------------------------------//
 const Search = styled("div")(({ theme }) => ({
@@ -171,13 +168,6 @@ const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <BookmarksIcon onClick={() => navigate("/saved/id")} />
-          </Badge>
-        </IconButton>
-      </MenuItem>
-      <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -234,17 +224,19 @@ const Navbar = () => {
               aria-label="open drawer"
               sx={{ mr: 2 }}
             >
-              <MenuIcon />
+              <MenuIcon onClick={() => navigate("/")} />
             </IconButton>
             <Typography
+              className="logo"
               sx={{ cursor: "pointer" }}
               variant="h6"
               onClick={() => navigate("/")}
             >
-              LOGO
+              T-SHORTS
             </Typography>
             <Container>
               <Typography
+                className="catalog"
                 sx={{ cursor: "pointer" }}
                 variant="h6"
                 onClick={() => navigate("/catalog?_page=1&_limit=4")}
@@ -270,19 +262,13 @@ const Navbar = () => {
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
                 size="large"
-                aria-label="show 4 new mails"
-                color="inherit"
-              >
-                <Badge badgeContent={5} color="error">
-                  <BookmarksIcon onClick={() => navigate("/saved/id")} />
-                </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={1} color="error">
+                <Badge
+                  badgeContent={cart.products.map((item) => item.count)}
+                  color="error"
+                >
                   <ShoppingCartIcon onClick={() => navigate("/cart/id")} />
                 </Badge>
               </IconButton>

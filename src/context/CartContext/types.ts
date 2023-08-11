@@ -15,8 +15,5 @@ export interface ICartContextTypes {
   increaseCount: (id: number) => void;
   decreaseCount: (id: number) => void;
   clearCart: () => void;
-  saveProduct: (product: Product) => void;
-  removeSavedProduct: (id: number) => void;
-  getSavedProductsFromLS: () => void;
   clearLS: () => void;
 }

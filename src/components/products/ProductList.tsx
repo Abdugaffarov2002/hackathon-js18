@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { productContext } from "../../context/ProductContext/ProductContext";
 import { IProductContextType } from "../../context/ProductContext/types";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard/ProductCard";
 import {
   Box,
   CircularProgress,
@@ -32,6 +32,7 @@ const ProductList = () => {
   return (
     <>
       <Container
+        className="filter"
         sx={{
           display: "flex",
           justifyContent: "center",

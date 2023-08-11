@@ -1,0 +1,16 @@
+.logo {
+  width: 228px;
+}
+.catalog {
+  padding-left: 5px !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+  .catalog {
+    font-size: 1.25rem !important;
+    padding-left: 0 !important;
+  }
+}

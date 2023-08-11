@@ -1,13 +1,10 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import BookmarkAddedOutlinedIcon from "@mui/icons-material/BookmarkAddedOutlined";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
-import { Product } from "../../models/product";
+import { Product } from "../../../models/product";
 import { useNavigate, useParams } from "react-router-dom";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
@@ -23,22 +20,18 @@ import DeleteForever from "@mui/icons-material/DeleteForever";
 import MenuButton from "@mui/joy/MenuButton";
 import Dropdown from "@mui/joy/Dropdown";
 import { Container } from "@mui/system";
-import { productContext } from "../../context/ProductContext/ProductContext";
-import { IProductContextType } from "../../context/ProductContext/types";
-import { cartContext } from "../../context/CartContext/CartContext";
-import { ICartContextTypes } from "../../context/CartContext/types";
+import { productContext } from "../../../context/ProductContext/ProductContext";
+import { IProductContextType } from "../../../context/ProductContext/types";
+import { cartContext } from "../../../context/CartContext/CartContext";
+import { ICartContextTypes } from "../../../context/CartContext/types";
 
 interface ProductItemProps {
   item: Product;
 }
 
 const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
-  const {
-    addProductToCart,
-    deleteProductFromCart,
-    isAlreadyInCart,
-    saveProduct,
-  } = React.useContext(cartContext) as ICartContextTypes;
+  const { addProductToCart, deleteProductFromCart, isAlreadyInCart } =
+    React.useContext(cartContext) as ICartContextTypes;
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -143,12 +136,6 @@ const ProductCard: React.FC<ProductItemProps> = ({ item }) => {
                 <MoreVert />
               </MenuButton>
               <Menu placement="bottom-end">
-                <MenuItem onClick={() => saveProduct(item)}>
-                  <ListItemDecorator>
-                    <BookmarkAddOutlinedIcon />
-                  </ListItemDecorator>
-                  Edit
-                </MenuItem>
                 <MenuItem onClick={() => navigate(`/edit/${item.id}`)}>
                   <ListItemDecorator>
                     <Edit />

@@ -2,14 +2,18 @@ import { Paper, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import React, { useContext } from "react";
 import { productContext } from "../../context/ProductContext/ProductContext";
 import { IProductContextType } from "../../context/ProductContext/types";
-
+import "../products/ProductCard/ProductCard.css";
 const FilterProduct = () => {
   const { fetchByParams } = useContext(productContext) as IProductContextType;
   return (
     <div>
-      <Paper sx={{ width: "471px", backgroundColor: "#263238" }}>
+      <Paper
+        className="paper"
+        sx={{ width: "471px", backgroundColor: "#263238" }}
+      >
         <ToggleButtonGroup
-          sx={{ backgroundColor: "#263238", border: "none" }}
+          className="filter"
+          sx={{ backgroundColor: "#263238" }}
           exclusive
           onChange={(e, value) => fetchByParams("category", value)}
           aria-label="Platform"

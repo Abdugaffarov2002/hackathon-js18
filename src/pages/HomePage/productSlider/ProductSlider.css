@@ -1,0 +1,17 @@
+.carousel-root {
+  max-width: 800px;
+  margin: 25px auto;
+  border: 1px, solid, #263238;
+}
+
+.carousel .slide img {
+  width: 100%;
+  height: auto;
+}
+.text {
+  margin: 25px;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-style: italic;
+  color: #263238;
+}

@@ -2,7 +2,6 @@ import React, { FC, ReactNode, createContext, useState } from "react";
 import { ICart, ICartContextTypes } from "./types";
 import { Product } from "../../models/product";
 import { ICartProduct } from "../../models/cart";
-import { Navigate, useNavigate } from "react-router-dom";
 import { notify } from "../../components/Toastify/Toastify";
 export const cartContext = createContext<ICartContextTypes | null>(null);
 
@@ -13,19 +12,6 @@ const initState: ICart = {
 
 interface ICartContextProps {
   children: ReactNode;
-}
-
-function getSavedProductsFromLS(): ICartProduct[] {
-  const data = JSON.parse(localStorage.getItem("savedProducts") as string);
-  if (!data) {
-    return [];
-  }
-
-  return data;
-}
-
-function setSavedProductsToLS(products: ICartProduct[]) {
-  localStorage.setItem("savedProducts", JSON.stringify(products));
 }
 
 function getCartFromLS(): ICart {
@@ -124,31 +110,6 @@ const CartContext: FC<ICartContextProps> = ({ children }) => {
     getCart();
   }
 
-  function saveProduct(product: Product) {
-    const savedProducts = getSavedProductsFromLS();
-
-    if (!savedProducts.some((item) => item.id === product.id)) {
-      savedProducts.push({
-        ...product,
-        count: 0,
-        subPrice: 0,
-      });
-      setSavedProductsToLS(savedProducts);
-      notify("Product saved for later");
-    } else {
-      notify("Product is already saved");
-    }
-  }
-
-  function removeSavedProduct(id: number) {
-    const savedProducts = getSavedProductsFromLS();
-
-    const updatedSavedProducts = savedProducts.filter((item) => item.id !== id);
-
-    setSavedProductsToLS(updatedSavedProducts);
-    notify("Product removed from saved");
-  }
-
   const value = {
     cart,
     getCart,
@@ -158,9 +119,6 @@ const CartContext: FC<ICartContextProps> = ({ children }) => {
     increaseCount,
     decreaseCount,
     clearCart,
-    saveProduct,
-    removeSavedProduct,
-    getSavedProductsFromLS,
     clearLS,
   };
   return <cartContext.Provider value={value}>{children}</cartContext.Provider>;

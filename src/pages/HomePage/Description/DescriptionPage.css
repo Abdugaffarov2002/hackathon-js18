@@ -1,0 +1,23 @@
+.title {
+  margin: 10px 80px;
+  font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 50px;
+}
+
+.title p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.list_of_text {
+  margin-top: 10px;
+  list-style-type: none;
+}
+.o_nas {
+  margin: 25px;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-style: italic;
+  color: #263238;
+}
